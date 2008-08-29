@@ -1,0 +1,34 @@
+<div class="image-field"
+     tal:define="cooked_name string:${options/modified_name}:int"
+     i18n:domain="sd">
+  <div class="fileimage-image">
+    <img tal:attributes="src options/image_url" />
+  </div>
+  <div>
+    <input type="radio"
+	   tal:attributes="name cooked_name"
+	   value="0" checked="checked" />
+    <label i18n:translate="keep_image"
+	   tal:attributes="for cooked_name">Keep existing image</label>
+  </div>
+  <div>
+    <input type="radio"
+	   tal:attributes="name cooked_name"
+	   value="2" />
+    <label i18n:translate="delete_image"
+	   tal:attributes="for cooked_name">Delete the existing file</label>
+  </div>
+  <div>
+    <p>
+      <input type="radio"
+	     tal:attributes="name cooked_name"
+	     value="1" />
+      <label i18n:translate="upload_image"
+	     tal:attributes="for cooked_name">Replace with new file:</label>
+    </p>
+  </div>
+  <div tal:attributes="class string:_file_${options/name}">
+    <input type="file"
+	   tal:attributes="name string:${options/name}" />
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+  <adapter
+      factory=".thumbnailer.AssignmentThumbnailsHandler"
+      />
+  
+  <adapter
+      name="thumbnail" 
+      factory=".traversal.PortletThumbnailsTraverser"
+      />
+  
+  <subscriber
+      handler=".events.ThumbnailsGeneration"
+      for=".interfaces.IItemWithImageField
+	   .interfaces.IImageUpdatedEvent"
+      />
+
+</configure>

@@ -1,0 +1,24 @@
+<div class="image-field"
+     tal:define="cooked_name string:${options/modified_name}:int"
+     i18n:domain="sd">
+  <em class="discreet callout"
+      i18n:translate="no_image">No image uploaded yet.</em>
+  <div>
+    <input type="radio"
+	   tal:attributes="name string:${options/modified_name}:int"
+	   value="0"/>
+    <label i18n:translate="leave_empty"
+	   tal:attributes="for cooked_name">Keep this field empty</label>
+  </div>
+  <div>
+    <input type="radio"
+	   tal:attributes="name cooked_name"
+	   value="1" checked="checked" />
+    <label i18n:translate="upload_image"
+	   tal:attributes="for cooked_name">Upload a new image:</label>
+  </div>
+  <div tal:attributes="class string:_file_${options/name}">
+    <input type="file"
+	   tal:attributes="name string:${options/name}" />
+  </div>
+</div>
