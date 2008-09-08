@@ -1,0 +1,23 @@
+<dl class="portlet portlet-image"
+    i18n:domain="sd">
+  <dt class="portletHeader">
+    <span class="portletTopLeft"></span>
+    <a class="tile" tal:content="view/Title" />
+    <span class="portletTopRight"></span>
+  </dt>
+  <dd class="portletItem odd picture"
+      tal:define="image view/tag;
+		  comment view/caption"
+      tal:condition="image">
+    <a class="pop-image"
+       tal:attributes="href view/getImageUrl;
+		       alt comment;">
+      <tal:portait replace="structure image" />
+    </a>
+    <div class="picture-caption"
+	 tal:condition="comment"
+	 tal:content="comment">
+      caption
+    </div>
+  </dd>
+</dl>

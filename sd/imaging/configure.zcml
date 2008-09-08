@@ -1,4 +1,28 @@
-<configure xmlns="http://namespaces.zope.org/zope">
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:gs="http://namespaces.zope.org/genericsetup"
+    i18n_domain="sd">
+  
+  <gs:registerProfile
+        name="default"
+        title="SD Module : Image portlet"
+        directory="profiles/default"
+        description="Independant SD package providing an image portlet."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+  <!-- Register the blocks -->
+  <plone:portlet
+      name="sd.imaging.portlet"
+      interface=".interfaces.IPortletWithImage"
+      assignment=".portlet.AssignmentWithImage"
+      renderer=".portlet.ImagePortletRenderer"
+      addview=".portlet.AddFormWithImage"
+      editview=".portlet.EditFormWithImage"
+      view_permission="zope2.View"
+      edit_permission="cmf.ModifyPortalContent"
+      />
 
   <adapter
       factory=".thumbnailer.AssignmentThumbnailsHandler"

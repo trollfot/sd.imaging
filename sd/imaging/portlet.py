@@ -12,6 +12,7 @@ from zope.cachedescriptors.property import Lazy
 from plone.app.portlets.portlets import base
 from Products.CMFPlone import PloneMessageFactory as __
 from Products.ATContentTypes.interface.image import IImageContent
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 # sd.common
 from sd import _
@@ -48,9 +49,14 @@ class AssignmentWithImage(base.Assignment):
 class AddFormWithImage(base.AddForm):
     """An add form with an image field
     """
+    form_fields = form.Fields(IPortletWithImage)
+    
     def __init__(self,  *args, **kwargs):
         super(AddFormWithImage, self).__init__(*args, **kwargs)
         self.form_fields['image'].custom_widget = ImageUploadWidget
+
+    def create(self, data):
+        return AssignmentWithImage(**data)
 
     def createAndAdd(self, data):
         data['url'] = '/'.join(self.context.__parent__.getPhysicalPath())
@@ -61,6 +67,8 @@ class EditFormWithImage(base.EditForm):
     """A form with a save action triggering an event if an image
     has been uploaded.
     """
+    form_fields = form.Fields(IPortletWithImage)
+    
     def __init__(self,  *args, **kwargs):
         super(EditFormWithImage, self).__init__(*args, **kwargs)
         self.form_fields['image'].custom_widget = ImageUploadWidget
@@ -89,6 +97,8 @@ class ImagePortletRenderer(BasePortletRenderer):
     """Base renderer for portlets containing an image
     """
     implements(IImageContent)
+
+    render = ViewPageTemplateFile('templates/image.pt')
 
     def caption(self):
         """Returns the image caption text.

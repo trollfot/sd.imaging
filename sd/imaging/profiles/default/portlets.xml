@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<portlets xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+  
+  <!-- portlets -->
+  <portlet 
+      addview="sd.imaging.portlet"
+      title="Image portlet"
+      description="A portlet with an image."
+      i18n:attributes="title title_image_portlet;
+		       description description_image_portlet">
+    <for interface="plone.app.portlets.interfaces.IColumn" />
+  </portlet>
+  
+</portlets>

@@ -20,7 +20,13 @@ class IItemWithImageField(IAttributeAnnotatable):
 
 class IPortletWithImage(IItemWithImageField):
     """This interface represents a portlet containing an image field.
-    """    
+    """
+    name = TextLine(
+        title=_("Portlet's title"),
+        description=_(u"Title of the image portlet"),
+        required = True
+        )
+    
     image = ImageField(
         title = _(u"Picture"),
         description=_(u"The illustration/picture associated"),
