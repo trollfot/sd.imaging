@@ -6,8 +6,10 @@ from zope.annotation.interfaces import IAttributeAnnotatable
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.publisher.interfaces.browser import IBrowserPublisher
 from Products.ATContentTypes import ATCTMessageFactory as __
-from sd import _
+from zope.i18nmessageid import MessageFactory
 from field import ImageField
+
+_ = MessageFactory("sd")
 
 
 class IItemWithImageField(IAttributeAnnotatable):
