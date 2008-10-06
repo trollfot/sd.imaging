@@ -2,11 +2,11 @@
 
 from zope.schema import Dict, TextLine
 from zope.interface import Interface, Attribute
+from zope.i18nmessageid import MessageFactory
 from zope.annotation.interfaces import IAttributeAnnotatable
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.publisher.interfaces.browser import IBrowserPublisher
 from Products.ATContentTypes import ATCTMessageFactory as __
-from zope.i18nmessageid import MessageFactory
 from field import ImageField
 
 _ = MessageFactory("sd")
