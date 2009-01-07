@@ -1,0 +1,9 @@
+<div class="image-field" i18n:domain="sd">
+  <div class="fileimage-image"
+       tal:condition="options/file_exists">
+    <img tal:attributes="src options/image_url" />
+  </div>
+  <em class="discreet callout"
+      tal:condition="not: options/file_exists"
+      i18n:translate="no_image">No image uploaded yet.</em>
+</div>
