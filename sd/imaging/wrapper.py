@@ -2,6 +2,7 @@
 
 from Acquisition import Explicit
 from zope.interface import implements
+from zope.publisher.interfaces import NotFound
 from interfaces import IThumbnailWrapper
 
 
@@ -30,6 +31,8 @@ class ThumbnailWrapper(Explicit):
     def __call__(self):
         response = self.request.response
         image = getattr(self.context, self._fieldname, None)
+        import pdb
+        pdb.set_trace()
         if not image:
             raise NotFound(self.context, self._fieldname, self.request)
         content_type = image.get('content_type', 'image/jpeg')

@@ -4,15 +4,24 @@
     xmlns:gs="http://namespaces.zope.org/genericsetup"
     i18n_domain="sd">
   
-  <gs:registerProfile
-        name="default"
-        title="SD Module : Image portlet"
-        directory="profiles/default"
-        description="Independant SD package providing an image portlet."
-        provides="Products.GenericSetup.interfaces.EXTENSION"
+
+  <!-- Binding fields and widgets -->
+  <view type="zope.publisher.interfaces.browser.IBrowserRequest"
+        for=".field.IImageField"
+        provides="zope.app.form.interfaces.IInputWidget"
+        factory=".widget.ImageUploadWidget"
+        permission="cmf.ModifyPortalContent"
         />
 
-  <!-- Register the blocks -->
+  <view type="zope.publisher.interfaces.browser.IBrowserRequest"
+        for=".field.IImageField"
+        provides="zope.app.form.interfaces.IDisplayWidget"
+        factory=".widget.DisplayImageWidget"
+        permission="zope2.View"
+        />
+
+
+  <!-- Register the portlet -->
   <plone:portlet
       name="sd.imaging.portlet"
       interface=".interfaces.IPortletWithImage"
@@ -24,19 +33,28 @@
       edit_permission="cmf.ModifyPortalContent"
       />
 
-  <adapter
-      factory=".thumbnailer.AssignmentThumbnailsHandler"
-      />
-  
+  <!-- Adapters -->
+  <adapter factory=".thumbnailer.AssignmentThumbnailsHandler" />
   <adapter
       name="thumbnail" 
       factory=".traversal.PortletThumbnailsTraverser"
       />
   
+
+  <!-- Event subscribers -->
   <subscriber
       handler=".events.ThumbnailsGeneration"
       for=".interfaces.IItemWithImageField
 	   .interfaces.IImageUpdatedEvent"
       />
+
+  <!-- Generic Setup Profile -->
+  <gs:registerProfile
+        name="default"
+        title="SD Module : Image portlet"
+        directory="profiles/default"
+        description="Independant SD package providing an image portlet."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
 
 </configure>

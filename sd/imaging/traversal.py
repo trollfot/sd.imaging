@@ -34,6 +34,7 @@ class PortletThumbnailsTraverser(object):
         if scale is not None:
             return ThumbnailWrapper(self.context,
                                     self.request,
-                                    scale).__of__(self.context)
+                                    scale,
+                                    fieldname).__of__(self.context)
         
         raise NotFound(self.context, name, self.request)
