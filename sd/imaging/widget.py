@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from OFS.Image import File
 from Acquisition import Explicit
 from zope.cachedescriptors.property import Lazy
 from zope.app.form.browser.widget import DisplayWidget, SimpleInputWidget
@@ -19,13 +18,13 @@ class ImageWidgetMixin(object):
             required = self.context.required,
             modified_name = getattr(self, '_modified_name', u'')
             )
-        
-        if self._data and isinstance(self._data, File):
+
+        if self._data:
             attrs['file_exists'] = True
             attrs['filename'] = getattr(self, 'filename', u'')
             attrs['image_url'] = '%s/++thumbnail++%s.%s' % (
                 self.request.get("URL1"),
-                self._data.__name__,
+                self.context.__name__,
                 self.scale
                 )
         return attrs
