@@ -3,11 +3,11 @@
 from PIL import Image
 from cStringIO import StringIO
 from Acquisition import aq_base
-from zope.interface import implements
 from zope.component import adapts
-from zope.annotation.interfaces import IAnnotations
+from zope.interface import implements
 from zope.schema.fieldproperty import FieldProperty
-from interfaces import IItemWithImageField, IImageMiniaturizer
+from zope.annotation.interfaces import IAnnotations, IAnnotatable
+from interfaces import IImageMiniaturizer
 
 
 class AssignmentThumbnailsHandler(object):
@@ -17,7 +17,7 @@ class AssignmentThumbnailsHandler(object):
     depends on the field name.
     """
     implements(IImageMiniaturizer)
-    adapts(IItemWithImageField)
+    adapts(IAnnotatable)
 
     annotation_prefix = FieldProperty(IImageMiniaturizer['annotation_prefix'])
     thumbnails_scales = FieldProperty(IImageMiniaturizer['thumbnails_scales'])

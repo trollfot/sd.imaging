@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
 from zope.component import adapts
-from zope.interface import implements
+from zope.interface import Interface, implements
 from zope.traversing.interfaces import ITraversable
 from zope.publisher.interfaces import NotFound
 from zope.publisher.interfaces.http import IHTTPRequest
 from wrapper import ThumbnailWrapper
-from interfaces import IItemWithImageField, IImageMiniaturizer
+from interfaces import IImageMiniaturizer
 
 
 class PortletThumbnailsTraverser(object):
@@ -15,7 +15,7 @@ class PortletThumbnailsTraverser(object):
     instanciating an image thanks to an IImageMiniaturizer.
     """
     implements(ITraversable)
-    adapts(IItemWithImageField, IHTTPRequest)
+    adapts(Interface, IHTTPRequest)
     
     def __init__(self, context, request=None):
         self.context = context

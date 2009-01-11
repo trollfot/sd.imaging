@@ -19,7 +19,7 @@ class ImageWidgetMixin(object):
             modified_name = getattr(self, '_modified_name', u'')
             )
 
-        if self._data:
+        if self._data is not self._data_marker:
             attrs['file_exists'] = True
             attrs['filename'] = getattr(self, 'filename', u'')
             attrs['image_url'] = '%s/++thumbnail++%s.%s' % (
