@@ -2,7 +2,7 @@
 
 from Acquisition import Explicit
 from zope.cachedescriptors.property import Lazy
-from zope.app.form.browser.widget import DisplayWidget, SimpleInputWidget
+from zope.app.form.browser.widget import DisplayWidget
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from sd.common.widgets.file import FileUploadWidget
 

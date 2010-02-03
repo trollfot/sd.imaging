@@ -4,7 +4,6 @@
 from zope.formlib import form
 from zope.event import notify
 from zope.interface import implements
-from zope.component import getMultiAdapter
 from zope.i18nmessageid import MessageFactory
 from zope.lifecycleevent import ObjectModifiedEvent
 from zope.cachedescriptors.property import Lazy
@@ -16,12 +15,11 @@ from Products.ATContentTypes.interface.image import IImageContent
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 # sd.common
-
 from sd.common.fields.file import FileProperty
 from sd.common.portlets.base import BasePortletRenderer
 
 # sd.imaging
-from field import ImageField, IImageField
+from field import IImageField
 from events import ImageUpdatedEvent
 from widget import ImageUploadWidget
 from interfaces import IPortletWithImage
