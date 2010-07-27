@@ -1,13 +1,15 @@
 <dl class="portlet portlet-image"
-    i18n:domain="sd">
+    i18n:domain="sd"
+    tal:define="image view/tag;
+		comment view/caption">
   <dt class="portletHeader">
     <span class="portletTopLeft"></span>
-    <a class="tile" tal:content="view/Title" />
+    <a class="tile" tal:content="view/Title;"
+       tal:attributes="href view/getImageUrl;
+		       title comment;" />
     <span class="portletTopRight"></span>
   </dt>
   <dd class="portletItem odd picture"
-      tal:define="image view/tag;
-		  comment view/caption"
       tal:condition="image">
     <a class="pop-image"
        tal:attributes="href view/getImageUrl;
